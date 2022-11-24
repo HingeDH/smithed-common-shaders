@@ -1,6 +1,10 @@
 {
-    "pack": {
-        "description": "Adds various shader effects",
-        "pack_format": 12
-    }
+   "pack":{
+      "pack_format": 12,
+      "description": [
+		{"text":"Common Shaders","color":"#f2b55a"},
+		{"text":" | ","color":"#ada08c"},
+		{"text":"v0.2.1","color":"#e3d894"}
+	  ]
+   }
 }
