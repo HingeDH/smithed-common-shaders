@@ -42,6 +42,12 @@ flat out int noshadow;
 out vec4 maxLightColor;
 out float zpos;
 
+noperspective out vec4 iPositionV0;
+noperspective out vec4 iPositionV1;
+noperspective out vec4 iPositionV2;
+
+flat out vec3 iNormal;
+
 #moj_import <objmc_tools.glsl>
 
 void main() {
@@ -58,6 +64,16 @@ void main() {
     //objmc
     #define ENTITY
     #moj_import <objmc_main.glsl>
+
+    iNormal = Normal;
+
+    iPositionV0 = vec4(0);
+    iPositionV1 = vec4(0);
+    iPositionV2 = vec4(0);
+
+    if (gl_VertexID % 4 == 0) iPositionV0 = vec4(Pos, 1.0);
+    if (gl_VertexID % 4 == 2) iPositionV1 = vec4(Pos, 1.0);
+    if (gl_VertexID % 2 == 1) iPositionV2 = vec4(Pos, 1.0);
 
     gl_Position = ProjMat * ModelViewMat * (vec4(Pos, 1.0));
     vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Pos, FogShape);

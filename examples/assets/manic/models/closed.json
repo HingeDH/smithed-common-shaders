@@ -5,8 +5,8 @@
     32
   ],
   "textures": {
-    "0": "manic:grimoire_model_manic.closed_no_glint",
-    "particle": "manic:grimoire_model"
+    "0": "manic:item/grimoire_model_manic.closed_no_glint",
+    "particle": "manic:item/grimoire_model"
   },
   "elements": [
     {

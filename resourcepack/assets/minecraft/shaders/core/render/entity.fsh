@@ -31,11 +31,65 @@ flat in int noshadow;
 in vec4 maxLightColor;
 in float zpos;
 
+in vec4 iPositionV0;
+in vec4 iPositionV1;
+in vec4 iPositionV2;
+
+flat in vec3 iNormal;
+
 out vec4 fragColor;
 
 void main() {
-    vec4 color = texture(Sampler0, texCoord);
-    float alpha = textureLod(Sampler0, texCoord, 0.0).a * 255.;
+    vec2 mTexCoord = texCoord;
+    vec2 samplerSize = vec2(textureSize(Sampler0, 0));
+    vec2 oneTexel = 1./samplerSize;
+    ivec4 marker_s32_0 = ivec4(textureLod(Sampler0, mTexCoord + vec2(32.0, 0.0) * oneTexel, 0.0) * 255. + 0.5);
+
+    if (marker_s32_0.a == 242 && 0 < marker_s32_0.b && marker_s32_0.b < 4) {
+        vec2 backgroundTexCoord = mTexCoord + vec2(16.0, 0.0) * oneTexel;
+
+        if (marker_s32_0.b < 2)
+            mTexCoord = backgroundTexCoord;
+        else {
+            vec3 corner0 = iPositionV0.xyz / iPositionV0.w;
+            vec3 corner1 = iPositionV1.xyz / iPositionV1.w;
+            vec3 corner2 = iPositionV2.xyz / iPositionV2.w;
+
+            vec3 Tangent = normalize(corner1 - corner2);
+            vec3 Bitangent = normalize(corner0 - corner2);
+            vec3 Normal = normalize(cross(Tangent, Bitangent));
+
+            float n = sign(dot(Normal, iNormal));
+
+            if (n == -1.0) {
+                vec3 v = Tangent;
+                Tangent = -Bitangent;
+                Bitangent = -v;
+                Normal = -Normal;
+            }
+
+            mat3 TBN = mat3(Tangent, Bitangent, Normal);
+
+            vec3 center = ((corner0 + corner1) * .5) * TBN;
+            center.y *= -1.0;
+            vec2 scleraSize = 16. * vec2(marker_s32_0) / 255.;
+            vec2 pupilOffset = 0.0625 * round(normalize(center.xy) * min(scleraSize, scleraSize * length(center.xy) / abs(center.z)));
+
+            vec2 uvMin;
+            vec2 pupilUV = modf(mTexCoord * samplerSize / 16., uvMin);
+
+            pupilUV += pupilOffset;
+            pupilUV = uvMin + fract(pupilUV);
+            vec2 pupilTexCoord = pupilUV * 16. / samplerSize;
+            float pupilMask = textureLod(Sampler0, (pupilUV * 16.0 + vec2(32.0, 0.0)) / samplerSize, 0.0).b;
+
+            mTexCoord = pupilMask*255. < 2.5
+                ? backgroundTexCoord
+                : pupilTexCoord;
+        }
+    }
+    vec4 color = texture(Sampler0, mTexCoord);
+    float alpha = textureLod(Sampler0, mTexCoord, 0.0).a * 255.;
 
     // Switch used parts of the texture depending on where the model is displayed
     if (check_alpha(alpha, 253.0) && vertexDistance < 800) discard; // If it's inside the normal world space, it's always going to want to be the hand texture.
