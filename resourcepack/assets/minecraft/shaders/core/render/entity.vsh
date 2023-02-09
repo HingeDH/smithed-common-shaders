@@ -47,9 +47,9 @@ vec2[] corners = vec2[](
     vec2(1.0, 1.0)
 );
 
-noperspective out vec4 iPositionV0;
-noperspective out vec4 iPositionV1;
-noperspective out vec4 iPositionV2;
+out vec4 iPositionV0;
+out vec4 iPositionV1;
+out vec4 iPositionV2;
 
 flat out vec3 iNormal;
 

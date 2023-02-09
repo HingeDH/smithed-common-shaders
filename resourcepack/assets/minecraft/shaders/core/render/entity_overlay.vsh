@@ -42,9 +42,9 @@ flat out int noshadow;
 out vec4 maxLightColor;
 out float zpos;
 
-noperspective out vec4 iPositionV0;
-noperspective out vec4 iPositionV1;
-noperspective out vec4 iPositionV2;
+out vec4 iPositionV0;
+out vec4 iPositionV1;
+out vec4 iPositionV2;
 
 flat out vec3 iNormal;
 
