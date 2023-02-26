@@ -92,14 +92,11 @@ void main() {
     float alpha = textureLod(Sampler0, mTexCoord, 0.0).a * 255.;
 
     // Switch used parts of the texture depending on where the model is displayed
-    if (check_alpha(alpha, 253.0) && vertexDistance < 800) discard; // If it's inside the normal world space, it's always going to want to be the hand texture.
-
-	if (vertexDistance >= 800) { // If it's in a GUI, figure out if it's the paper doll or an inventory slot.
-
-		if (check_alpha(alpha, 254.0) && zpos < 2.0) discard; // If it's far back enough on the z-axis, it's usually in the paper doll's hand. Max set to 2 because nothing should be bigger than that.
-		else if (check_alpha(alpha, 253.0) && zpos >= 2.0) discard; // If it's close enough on the z-axis, it's usually in an inventory slot.
-
-	}
+    if (isGUI == 0 && check_alpha(alpha, 253.0)) discard;
+    if (isGUI == 1) {
+             if (zpos  > 125.0 && check_alpha(alpha, 254.0)) discard;
+        else if (zpos <= 125.0 && check_alpha(alpha, 253.0)) discard;
+    }
     
     color.rgb = mix(overlayColor.rgb, color.rgb, overlayColor.a);
 

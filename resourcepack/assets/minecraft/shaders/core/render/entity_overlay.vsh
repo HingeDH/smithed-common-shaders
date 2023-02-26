@@ -60,6 +60,8 @@ void main() {
     vertexColor = minecraft_mix_light(Light0_Direction, Light1_Direction, Normal, Color);
 
     maxLightColor = minecraft_sample_lightmap(Sampler2, ivec2(240.0, 240.0));
+    isGUI = int(isgui(ProjMat));
+    isHand = int(ishand(FogStart));
 
     //objmc
     #define ENTITY

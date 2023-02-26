@@ -119,8 +119,6 @@ if (ivec4(texelFetch(Sampler0, topleft, 0)*255) == ivec4(12,34,56,78)) {
     }
 //custom entity rotation
 #ifdef ENTITY
-    isGUI = int(isgui(ProjMat));
-    isHand = int(ishand(FogStart));
     if (any(greaterThan(autorotate,vec2(0))) && isGUI == 0) {
         //normal estimated rotation calculation from The Der Discohund
         vec3 local = IViewRotMat * Normal;
