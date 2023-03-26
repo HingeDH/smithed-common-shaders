@@ -94,8 +94,8 @@ void main() {
     // Switch used parts of the texture depending on where the model is displayed
     if (isGUI == 0 && check_alpha(alpha, 253.0)) discard;
     if (isGUI == 1) {
-             if (-zpos  < 2.0 && check_alpha(alpha, 254.0)) discard;
-        else if (-zpos >= 2.0 && check_alpha(alpha, 253.0)) discard; // inventory doll: Treat as if outside GUI
+             if (zpos  > 100.0 && check_alpha(alpha, 254.0)) discard;
+        else if (zpos <= 100.0 && check_alpha(alpha, 253.0)) discard; // inventory doll: Treat as if outside GUI
     }
     
     color.rgb = mix(overlayColor.rgb, color.rgb, overlayColor.a);
