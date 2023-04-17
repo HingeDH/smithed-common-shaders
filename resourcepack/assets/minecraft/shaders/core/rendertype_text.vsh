@@ -61,7 +61,9 @@ void main() {
 
     vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Position, FogShape);
     vertexColor = texelFetch(Sampler2, UV2 / 16, 0);
-    if (!marker)
+    if (marker)
+        vertexColor.a *= Color.a;
+    else
         vertexColor *= Color;
     texCoord0 = UV0;
 }
