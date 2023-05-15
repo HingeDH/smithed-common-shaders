@@ -72,6 +72,7 @@ void main() {
 
             vec3 center = ((corner0 + corner1) * .5) * TBN;
             center.y *= -1.0;
+            center.xy = center.yx;
             vec2 scleraSize = 16. * vec2(marker_s32_0) / 255.;
             vec2 pupilOffset = 0.0625 * round(normalize(center.xy) * min(scleraSize, scleraSize * length(center.xy) / abs(center.z)));
 
@@ -88,7 +89,7 @@ void main() {
                 : pupilTexCoord;
         }
     }
-    vec4 color = texture(Sampler0, mTexCoord);
+    vec4 color = mix(texture(Sampler0, mTexCoord), texture(Sampler0, texCoord2), transition);
     float alpha = textureLod(Sampler0, mTexCoord, 0.0).a * 255.;
 
     // Switch used parts of the texture depending on where the model is displayed

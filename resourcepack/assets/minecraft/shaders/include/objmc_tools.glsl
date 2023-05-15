@@ -36,11 +36,19 @@ ivec2 getvert(ivec2 topleft, int w, int h, int index) {
     );
 }
 
-int getb(int i, int b) {
-    return (i>>b)&1;
+ivec2 hid(int id) {
+  if (id < 1056)
+    return ivec2((32 + id % 32), (id/32));
+  else
+    id -= 1056;
+    return ivec2((id % 64), 33 + int(id/64));
 }
-int geta(int i, int b) {
-    return getb(i,b)<<7;
+
+bool getb(int i, int b) {
+    return bool((i>>b)&1);
+}
+int getb(int i, int b, int s) {
+    return (i>>b)&((1<<s)-1);
 }
 
 //3d rotation matrix from Barf Creations
