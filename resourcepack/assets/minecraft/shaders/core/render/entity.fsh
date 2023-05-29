@@ -72,7 +72,6 @@ void main() {
 
             vec3 center = ((corner0 + corner1) * .5) * TBN;
             center.y *= -1.0;
-            center.xy = center.yx;
             vec2 scleraSize = 16. * vec2(marker_s32_0) / 255.;
             vec2 pupilOffset = 0.0625 * round(normalize(center.xy) * min(scleraSize, scleraSize * length(center.xy) / abs(center.z)));
 
