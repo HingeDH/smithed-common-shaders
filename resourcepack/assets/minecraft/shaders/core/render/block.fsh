@@ -36,7 +36,7 @@ void main() {
     #define BLOCK
     #moj_import <objmc_light.glsl>
 
-    if (color.a < 0.01) {discard;}
+    if (color.a < 0.1) {discard;}
 
     color = make_emissive(color, lightColor, maxLightColor, vertexDistance, alpha);
 	color.a = remap_alpha(alpha) / 255.0;
