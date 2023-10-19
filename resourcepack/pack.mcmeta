@@ -1,10 +1,10 @@
 {
    "pack":{
-      "pack_format": 19,
+      "pack_format": 18,
       "description": [
 		{"text":"Common Shaders","color":"#f2b55a"},
 		{"text":" | ","color":"#ada08c"},
-		{"text":"v0.3.0","color":"#e3d894"}
+		{"text":"v0.3.1","color":"#e3d894"}
 	  ]
    }
 }
