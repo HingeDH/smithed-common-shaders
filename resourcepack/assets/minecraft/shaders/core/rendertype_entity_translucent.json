@@ -4,8 +4,8 @@
         "srcrgb": "srcalpha",
         "dstrgb": "1-srcalpha"
     },
-    "vertex": "render/head",
-    "fragment": "render/head",
+    "vertex": "render/head_copy",
+    "fragment": "render/head_copy",
     "attributes": [
         "Position",
         "Color",

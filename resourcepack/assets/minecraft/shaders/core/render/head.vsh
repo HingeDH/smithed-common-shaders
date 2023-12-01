@@ -57,10 +57,6 @@ void main() {
     #define HEAD
     #moj_import<objmc_head.glsl>
 
-    if (isCustom != 0) {
-        
-    }
-
     gl_Position = ProjMat * ModelViewMat * (vec4(Pos, 1.0));
     vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Pos, FogShape);
 }

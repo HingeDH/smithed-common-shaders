@@ -41,10 +41,6 @@ void main() {
     #define HEAD
     #moj_import<objmc_light.glsl>
 
-    if (isCustom != 0) {
-
-    }
-
     if (color.a < 0.01) discard;
 
     color = make_emissive(color, lightColor, maxLightColor, vertexDistance, alpha);

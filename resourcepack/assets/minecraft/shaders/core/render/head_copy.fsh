@@ -6,6 +6,10 @@
 
 uniform sampler2D Sampler0;
 
+uniform mat4 ModelViewMat;
+uniform mat4 ProjMat;
+uniform mat3 IViewRotMat;
+
 uniform vec4 ColorModulator;
 uniform float FogStart;
 uniform float FogEnd;
@@ -28,6 +32,11 @@ flat in int isHand;
 flat in int noshadow;
 
 in vec4 maxLightColor;
+in vec4 lightMapColor;
+in vec2 texCoord0;
+in vec2 texCoord1;
+in vec4 normal_spd;
+in float part;
 
 out vec4 fragColor;
 
@@ -42,14 +51,14 @@ void main() {
     #moj_import<objmc_light.glsl>
 
     if (isCustom != 0) {
+        if (color.a < 0.01) discard;
 
+        color = make_emissive(color, lightColor, maxLightColor, vertexDistance, alpha);
+        color.a = remap_alpha(alpha) / 255.0;
+        color.a *= vertexColor.a;
+
+        fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
+    } else {
+        #moj_import<spd_fsh.glsl>
     }
-
-    if (color.a < 0.01) discard;
-
-    color = make_emissive(color, lightColor, maxLightColor, vertexDistance, alpha);
-	color.a = remap_alpha(alpha) / 255.0;
-    color.a *= vertexColor.a;
-
-    fragColor = linear_fog(color, vertexDistance, FogStart, FogEnd, FogColor);
 }
