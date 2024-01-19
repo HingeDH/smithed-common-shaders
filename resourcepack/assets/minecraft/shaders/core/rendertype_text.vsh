@@ -47,7 +47,7 @@ void main() {
         && ioffset.x < offsets.length()
         && ioffset.y < offsets.length();
     if (marker) {
-        gl_Position = ProjMat * ModelViewMat * vec4(Position.xy, Position.z - 2.0, 1.0);
+        gl_Position = ProjMat * ModelViewMat * vec4(Position.xy, Position.z - 401., 1.0);
 
         vec2 offset = vec2(
             offsets[ioffset.x],
