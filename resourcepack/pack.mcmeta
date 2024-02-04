@@ -1,6 +1,6 @@
 {
    "pack":{
-      "pack_format": 24,
+      "pack_format": 22,
       "description": [
 		{"text":"Common Shaders","color":"#f2b55a"},
 		{"text":" | ","color":"#ada08c"},
