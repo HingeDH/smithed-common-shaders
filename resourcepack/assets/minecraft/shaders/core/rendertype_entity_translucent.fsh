@@ -7,7 +7,6 @@ uniform sampler2D Sampler0;
 
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
-uniform mat3 IViewRotMat;
 
 uniform vec4 ColorModulator;
 uniform float FogStart;

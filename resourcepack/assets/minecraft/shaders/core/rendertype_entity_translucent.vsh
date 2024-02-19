@@ -17,7 +17,6 @@ uniform sampler2D Sampler2;
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
 uniform int FogShape;
-uniform mat3 IViewRotMat;
 
 uniform vec3 Light0_Direction;
 uniform vec3 Light1_Direction;
@@ -80,7 +79,7 @@ void main() {
 
         gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
-        vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Position, FogShape);
+        vertexDistance = fog_distance(Position, FogShape);
         vertexColor = minecraft_mix_light(Light0_Direction, Light1_Direction, Normal, Color);
         lightColor = minecraft_sample_lightmap(Sampler2, UV2);
         maxLightColor = minecraft_sample_lightmap(Sampler2, ivec2(240.0, 240.0));
@@ -94,7 +93,7 @@ void main() {
         overlayColor = texelFetch(Sampler1, UV1, 0);
         normal = ProjMat * ModelViewMat * vec4(Normal, 0.0);
 
-        vec3 wpos = IViewRotMat * Position;
+        vec3 wpos = Position;
         vec2 UVout = UV0;
         vec2 UVout2 = vec2(0.0);
         int partId = -int((wpos.y - MAXRANGE) / SPACING);
@@ -104,7 +103,7 @@ void main() {
         if (partId == 0) { // higher precision position if no translation is needed
             gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
-            vertexDistance = fog_distance(ModelViewMat, wpos, FogShape);
+            vertexDistance = fog_distance(wpos, FogShape);
             vertexColor = minecraft_mix_light(Light0_Direction, Light1_Direction, Normal, Color);
             lightColor = minecraft_sample_lightmap(Sampler2, UV2);
             maxLightColor = minecraft_sample_lightmap(Sampler2, ivec2(240.0, 240.0));
@@ -122,7 +121,7 @@ void main() {
             int subuvIndex = faceId;
 
             wpos.y += SPACING * partId;
-            gl_Position = ProjMat * ModelViewMat * vec4(inverse(IViewRotMat) * wpos, 1.0);
+            gl_Position = ProjMat * ModelViewMat * vec4(wpos, 1.0);
             
             UVout = origins[2 * (partId - 1) + outerLayer];
             UVout2 = origins[2 * (partId - 1)];
@@ -171,7 +170,7 @@ void main() {
             UVout /= 64.0;
             UVout2 /= 64.0;
 
-            vertexDistance = fog_distance(ModelViewMat, wpos, FogShape);
+            vertexDistance = fog_distance(wpos, FogShape);
         }
 
         texCoord0 = UVout;

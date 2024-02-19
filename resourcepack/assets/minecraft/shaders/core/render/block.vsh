@@ -49,7 +49,7 @@ void main() {
 
     lightColor = minecraft_sample_lightmap(Sampler2, UV2);
     gl_Position = ProjMat * ModelViewMat * vec4(Pos, 1.0);
-    vertexDistance = fog_distance(ModelViewMat, Pos, FogShape);
+    vertexDistance = fog_distance(Pos, FogShape);
 
     
 	dimension = get_dimension(minecraft_sample_lightmap(Sampler2, ivec2(0.0, 0.0)));

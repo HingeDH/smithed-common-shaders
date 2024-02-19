@@ -18,7 +18,6 @@ uniform float FogStart;
 uniform int FogShape;
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
-uniform mat3 IViewRotMat;
 uniform float GameTime;
 
 uniform vec3 Light0_Direction;
@@ -99,7 +98,7 @@ void main() {
 
     if (isCustom != 0) {
         gl_Position = ProjMat * ModelViewMat * (vec4(Pos, 1.0));
-        vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Pos, FogShape);
+        vertexDistance = fog_distance(Pos, FogShape);
     } else {
         #moj_import<spd_vsh.glsl>
     }
