@@ -2,11 +2,8 @@
 
 uniform sampler2D DiffuseSampler;
 uniform sampler2D DataSampler;
-uniform sampler2D TentacleSampler;
-uniform sampler2D EyesSampler;
 
 uniform vec2 OutSize;
-uniform float Time;
 
 in vec2 texCoord;
 

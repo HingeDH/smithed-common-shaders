@@ -1,8 +1,8 @@
 {
    "pack":{
-      "pack_format": 18,
+      "pack_format": 22,
       "supported_formats": {
-        "min_inclusive": 18,
+        "min_inclusive": 22,
         "max_inclusive": 26
       },
       "description": [
@@ -15,7 +15,7 @@
      "entries": [
        {
          "formats": {
-           "min_inclusive": 18,
+           "min_inclusive": 22,
            "max_inclusive": 24
          },
          "directory": "overlay_1-20-3"
