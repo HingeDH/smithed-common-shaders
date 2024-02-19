@@ -1,25 +1,10 @@
 {
    "pack":{
-      "pack_format": 22,
-      "supported_formats": {
-        "min_inclusive": 22,
-        "max_inclusive": 26
-      },
+      "pack_format": 26,
       "description": [
-		{"text":"Common Shaders","color":"#f2b55a"},
-		{"text":" | ","color":"#ada08c"},
-		{"text":"v0.3.2","color":"#e3d894"}
+				{"text":"Common Shaders","color":"#f2b55a"},
+		    {"text":" | ","color":"#ada08c"},
+		    {"text":"v0.3.2","color":"#e3d894"}
 	  ]
-   },
-   "overlays": {
-     "entries": [
-       {
-         "formats": {
-           "min_inclusive": 22,
-           "max_inclusive": 24
-         },
-         "directory": "overlay_1-20-3"
-       }
-     ]
-   }
+  }
 }
