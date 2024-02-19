@@ -49,3 +49,6 @@ More specifically, the first two characters in this are `0x28`, where the `2` me
 * https://github.com/ShockMicro/CorePerspectiveModels
 * https://github.com/ShockMicro/VanillaDynamicEmissives
 * https://github.com/Godlander/objmc
+* https://github.com/bradleyq/stable_player_display
+
+Thank you to HalbFettKaese and XyloDatapacks for contributing!
