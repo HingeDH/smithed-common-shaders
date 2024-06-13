@@ -177,14 +177,14 @@ if (markerPixel == ivec4(12,34,56,78) || markerPixel == ivec4(12,34,56,79)) {
         if (isHand + isGUI == 0) {
             if (any(greaterThan(autorotate,vec2(0)))) {
                 //normal estimated rotation calculation from The Der Discohund
-                vec3 local = IViewRotMat * Normal;
+                vec3 local = Normal;
                 float yaw = -atan(local.x, local.z);
                 float pitch = -atan(local.y, length(local.xz));
-                posoffset = rotate(vec3(vec2(pitch,yaw)*autorotate,0) + rotation) * posoffset * IViewRotMat;
+                posoffset = rotate(vec3(vec2(pitch,yaw)*autorotate,0) + rotation) * posoffset;
             }
             //pure color rotation
             else {
-                posoffset = rotate(rotation) * posoffset * IViewRotMat;
+                posoffset = rotate(rotation) * posoffset;
             }
         } else if (isGUI == 1) {
             posoffset *= vec3(-16.0, -16.0, -16.0);
