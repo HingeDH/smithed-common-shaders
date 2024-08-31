@@ -50,5 +50,5 @@ More specifically, the first two characters in this are `0x28`, where the `2` me
 * https://github.com/ShockMicro/VanillaDynamicEmissives
 * https://github.com/Godlander/objmc
 * https://github.com/bradleyq/stable_player_display
-
+* https://github.com/PuckiSilver/NoShadow/
 Thank you to HalbFettKaese and XyloDatapacks for contributing!
